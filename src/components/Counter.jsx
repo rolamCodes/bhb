@@ -5,10 +5,6 @@ import Point from './Point';
 function Counter() {
     return (
         <>
-            <HabitCard />
-            <HabitCard />
-            <HabitCard />
-            <HabitCard />
         </>
     );
 }

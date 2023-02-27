@@ -87,6 +87,8 @@ body {
   font-family: 'poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+  color: white;
 }
 
 button {
@@ -104,5 +106,65 @@ button {
 }
 
 .nav-icon {
+  object-fit: contain;
+}
+
+/* App */
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 16px;
+}
+
+.text-highlight {
+  color: var(--gray-light);
+}
+
+.text-habit {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.big {
+  font-size: 28px;
+}
+
+/* Menu */
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* HabitCard */
+
+.habit-card-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 15px;
+  background-color: var(--gray-dark);
+}
+
+.habit-card-text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.status {
+  display: grid;
+  place-items: center;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background-color: var(--green);
+}
+
+.habit-card-icon {
+  width: 32px;
   object-fit: contain;
 }
