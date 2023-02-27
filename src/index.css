@@ -88,3 +88,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+/* Nav */
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 16px;
+  background-color: var(--gray-dark);
+}
+
+.nav-icon {
+  object-fit: contain;
+}
