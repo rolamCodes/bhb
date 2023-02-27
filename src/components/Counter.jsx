@@ -1,8 +1,15 @@
 import React from 'react';
+import HabitCard from './HabitCard';
+import Point from './Point';
 
 function Counter() {
     return (
-        <div>Counter</div>
+        <>
+            <HabitCard />
+            <HabitCard />
+            <HabitCard />
+            <HabitCard />
+        </>
     );
 }
 

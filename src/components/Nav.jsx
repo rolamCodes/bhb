@@ -2,7 +2,11 @@ import React from 'react';
 
 function Nav() {
     return (
-        <div>Nav</div>
+        <div className='nav-container'>
+            <button>Contact</button>
+            <img src='' alt='' />
+            <button>Menu</button>
+        </div>
     );
 }
 
