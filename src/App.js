@@ -5,7 +5,7 @@ import Menu from "./components/Menu";
 
 function App() {
   return (
-    <>
+    <div className='app'>
       <Nav />
       <div className='main-container'>
         <div>
@@ -14,11 +14,11 @@ function App() {
         </div>
         <div className='counters-container'>
           <Counter type='win' />
+          <div className='divider'></div>
           <Counter type='lose' />
         </div>
-        <Menu />
       </div>
-    </>
+    </div>
   );
 }
 
