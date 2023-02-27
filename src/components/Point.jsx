@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Point() {
+function Point({ type }) {
     return (
-        <div>Point</div>
+        <div className={`point ${type}`}></div>
     );
 }
 

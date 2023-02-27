@@ -13,9 +13,9 @@ function App() {
           <p className='text-habit big'>Leaving the fridge open</p>
         </div>
         <div className='counters-container'>
-          <Counter type='win' />
+          <Counter type='Won' points={[1, 2, 3, 4]} />
           <div className='divider'></div>
-          <Counter type='lose' />
+          <Counter type='Lost' points={[1]} />
         </div>
       </div>
     </div>

@@ -229,6 +229,14 @@ button {
   background-color: var(--green);
 }
 
+.Won {
+  background-color: var(--green);
+}
+
+.Lost {
+  background-color: var(--red);
+}
+
 .divider {
   width: 1px;
   background-color: var(--gray-light);
