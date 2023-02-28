@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import Nav from './components/Nav';
 import Counter from './components/Counter';
-import List from "./components/List";
+import List from './components/List';
+import db from './firebase';
+import { doc, getDoc, getDocs, setDoc, updateDoc, collection } from 'firebase/firestore';
+import auth from './firebase';
+import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+
 
 function App() {
   const [wPoints, setWPoints] = useState();
