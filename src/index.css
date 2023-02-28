@@ -158,6 +158,7 @@ button {
 .menu {
   display: flex;
   flex-direction: column;
+  padding: 16px;
   gap: 16px;
 }
 
@@ -180,8 +181,8 @@ button {
 .status {
   display: grid;
   place-items: center;
-  width: 65px;
-  height: 65px;
+  min-width: 65px;
+  min-height: 65px;
   border-radius: 50%;
   background-color: var(--green);
 }
