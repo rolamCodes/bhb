@@ -4,9 +4,9 @@ import Counter from './components/Counter';
 import Menu from "./components/Menu";
 
 function App() {
-  const [wPoints, setWPoints] = useState([]);
-  const [lPoints, setLPoints] = useState([]);
-  const [habitName, setHabitName] = useState('Leaving the fridge open');
+  const [wPoints, setWPoints] = useState();
+  const [lPoints, setLPoints] = useState();
+  const [habitName, setHabitName] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(true);
 
   const habits = [
@@ -18,20 +18,20 @@ function App() {
     },
     {
       name: 'Gambling',
-      wPoints: 34,
-      lPoints: 5,
+      wPoints: 15,
+      lPoints: 0,
       status: 'Lost',
     },
     {
       name: 'Spending too much money on food',
       wPoints: 80,
-      lPoints: 5,
+      lPoints: 20,
       status: 'InProgress',
     },
     {
       name: 'Killing cats',
-      wPoints: 34,
-      lPoints: 5,
+      wPoints: 100,
+      lPoints: 12,
       status: 'Won',
     },
     {
@@ -54,13 +54,24 @@ function App() {
     }
   }
 
+  const handleCardClick = (habitObject) => {
+    habits.forEach((habit) => {
+      if (habit.name === habitObject.name) {
+        setHabitName(habitObject.name);
+        setWPoints(habitObject.wPoints);
+        setLPoints(habitObject.lPoints);
+        setIsMenuOpen(!isMenuOpen);
+      }
+    });
+  }
+
   return (
     <div className='app'>
       <Nav
         isMenuOpen={isMenuOpen}
         onMenuButtonClick={() => setIsMenuOpen(!isMenuOpen)}
       />
-      {isMenuOpen ? <Menu habits={habits} />
+      {isMenuOpen ? <Menu habits={habits} onCardClick={handleCardClick} />
         :
         <div className='main-container'>
           <div>

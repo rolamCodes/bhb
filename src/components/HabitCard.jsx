@@ -3,10 +3,9 @@ import win from '../assets/win.png';
 import lose from '../assets/lose.png';
 import inProgress from '../assets/in_progress.png';
 
-function HabitCard({ name, wPoints, lPoints, status }) {
-    console.log(status);
+function HabitCard({ habitObject, name, wPoints, lPoints, status, onCardClick }) {
     return (
-        <div className='habit-card-container'>
+        <div className='habit-card-container' onClick={() => onCardClick(habitObject)}>
             <div className={`status ${status}`}>
                 {status === 'Won' ? <img className='habit-card-icon' src={win} alt='habit card icon' />
                     : status === 'Lost' ? <img className='habit-card-icon' src={lose} alt='habit card icon' />
