@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import HabitCard from './HabitCard';
 import Point from './Point';
 
 function Counter({ type, points, onNewPoint }) {
@@ -11,7 +10,7 @@ function Counter({ type, points, onNewPoint }) {
             arr.push(1);
             setCounterPoints(arr);
         }
-    }, []);
+    }, [points]);
 
     return (
         <div className='counter-container'>

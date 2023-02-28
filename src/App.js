@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Nav from './components/Nav';
 import Counter from './components/Counter';
 import List from "./components/List";
