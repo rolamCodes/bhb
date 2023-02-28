@@ -150,6 +150,12 @@ button {
 }
 
 .nav-icon {
+  width: 25px;
+  object-fit: contain;
+}
+
+.logo {
+  width: 40px;
   object-fit: contain;
 }
 

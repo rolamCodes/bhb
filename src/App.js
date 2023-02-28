@@ -56,7 +56,10 @@ function App() {
 
   return (
     <div className='app'>
-      <Nav />
+      <Nav
+        isMenuOpen={isMenuOpen}
+        onMenuButtonClick={() => setIsMenuOpen(!isMenuOpen)}
+      />
       {isMenuOpen ? <Menu habits={habits} />
         :
         <div className='main-container'>
