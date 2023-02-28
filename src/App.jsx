@@ -8,8 +8,7 @@ function App() {
   const [lPoints, setLPoints] = useState();
   const [habitName, setHabitName] = useState('');
   const [isHabitOpen, setIsHabitOpen] = useState(false);
-
-  const habits = [
+  const [habits, setHabits] = useState([
     {
       name: 'Leaving the fridge open',
       wPoints: 34,
@@ -40,17 +39,23 @@ function App() {
       lPoints: 5,
       status: 'Won',
     }
-  ];
+  ]);
 
   const handleNewPoint = (pointType) => {
     if (pointType === 'Won') {
-      const arr = [...wPoints];
-      arr.push(1);
-      setWPoints(arr);
-    } else {
-      const arr = [...lPoints];
-      arr.push(1);
-      setLPoints(arr);
+      for (let i = 0; i < habits.length; i++) {
+        if (habits[i].name === habitName) {
+          habits[i].wPoints = wPoints + 1;
+          setWPoints(habits[i].wPoints);
+        }
+      }
+    } else if (pointType === 'Lost') {
+      for (let i = 0; i < habits.length; i++) {
+        if (habits[i].name === habitName) {
+          habits[i].lPoints = lPoints + 1;
+          setLPoints(habits[i].lPoints);
+        }
+      }
     }
   }
 
