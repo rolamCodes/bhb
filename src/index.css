@@ -247,14 +247,14 @@ button {
 
 /* Class names I regret using... these are for styling buttons and status icons */
 
-.Won {
+.won {
   background-color: var(--green);
 }
 
-.Lost {
+.lost {
   background-color: var(--red);
 }
 
-.InProgress {
+.open {
   background-color: var(--gray-light);
 }

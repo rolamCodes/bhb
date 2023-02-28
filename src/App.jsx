@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav from './components/Nav';
 import Counter from './components/Counter';
 import List from './components/List';
-import db from './firebase';
+import { db } from './firebase';
 import { doc, getDoc, getDocs, setDoc, updateDoc, collection } from 'firebase/firestore';
-import auth from './firebase';
-import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import { auth } from './firebase';
+import { signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
 
 
 function App() {
@@ -13,38 +13,8 @@ function App() {
   const [lPoints, setLPoints] = useState();
   const [habitName, setHabitName] = useState('');
   const [isHabitOpen, setIsHabitOpen] = useState(false);
-  const [habits, setHabits] = useState([
-    {
-      name: 'Leaving the fridge open',
-      wPoints: 34,
-      lPoints: 5,
-      status: 'Won',
-    },
-    {
-      name: 'Gambling',
-      wPoints: 15,
-      lPoints: 0,
-      status: 'Lost',
-    },
-    {
-      name: 'Spending too much money on food',
-      wPoints: 80,
-      lPoints: 20,
-      status: 'InProgress',
-    },
-    {
-      name: 'Killing cats',
-      wPoints: 100,
-      lPoints: 12,
-      status: 'Won',
-    },
-    {
-      name: 'Driving fast',
-      wPoints: 1,
-      lPoints: 5,
-      status: 'Won',
-    }
-  ]);
+  const [habits, setHabits] = useState([]);
+  const [signedInUser, setSignedInUser] = useState(undefined);
 
   const handleNewPoint = (pointType) => {
     if (pointType === 'Won') {
@@ -76,41 +46,98 @@ function App() {
   }
 
   const handleAddNewHabit = () => {
-    console.log('Add new habit');
+    const docRef = doc(db, 'habits', '1');
+    setDoc(docRef, {
+      name: 'Gambling',
+      wPoints: 0,
+      lPoints: 0,
+      status: 'open'
+    });
   }
 
-  return (
-    <div className='app'>
-      <Nav
-        isHabitOpen={isHabitOpen}
-        onClose={() => setIsHabitOpen(!isHabitOpen)}
-        onAdd={handleAddNewHabit}
-      />
-      {isHabitOpen ?
-        <div className='main-container'>
-          <div>
-            <p className='text-highlight'>Habit</p>
-            <p className='text-habit big'>{habitName}</p>
-          </div>
-          <div className='counters-container'>
-            <Counter
-              type='Won'
-              points={wPoints}
-              onNewPoint={handleNewPoint}
-            />
-            <div className='divider'></div>
-            <Counter
-              type='Lost'
-              points={lPoints}
-              onNewPoint={handleNewPoint}
-            />
-          </div>
-        </div>
-        :
-        <List habits={habits} onCardClick={handleCardClick} />
+  const handleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        const uid = user.uid;
+        const docRef = doc(db, 'users', uid);
+        getDoc(docRef)
+          .then((docSnap) => {
+            if (docSnap) {
+              console.log(docSnap);
+            } else {
+              setDoc(docRef, { userName: user.displayName, habits: [] });
+            }
+          })
+          .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+  }
+
+  const handleSignout = () => {
+    signOut(auth)
+      .then(() => {
+        //signed out
+      })
+      .catch(err => console.log(err));
+  }
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setSignedInUser(user);
+      } else {
+        setSignedInUser(null);
       }
-    </div>
-  );
+    })
+  }, []);
+
+  if (signedInUser === undefined) {
+    return (
+      <></>
+    );
+  } else if (signedInUser === null) {
+    return (
+      <div style={{ height: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <button onClick={handleSignIn}>Sign in with Google</button>
+      </div>
+    );
+  } else {
+    return (
+      <div className='app'>
+        <Nav
+          isHabitOpen={isHabitOpen}
+          onClose={() => setIsHabitOpen(!isHabitOpen)}
+          onAdd={handleAddNewHabit}
+          onSignout={handleSignout}
+        />
+        {isHabitOpen ?
+          <div className='main-container'>
+            <div>
+              <p className='text-highlight'>Habit</p>
+              <p className='text-habit big'>{habitName}</p>
+            </div>
+            <div className='counters-container'>
+              <Counter
+                type='Won'
+                points={wPoints}
+                onNewPoint={handleNewPoint}
+              />
+              <div className='divider'></div>
+              <Counter
+                type='Lost'
+                points={lPoints}
+                onNewPoint={handleNewPoint}
+              />
+            </div>
+          </div>
+          :
+          <List habits={habits} onCardClick={handleCardClick} />
+        }
+      </div>
+    );
+  }
 }
 
 export default App;
