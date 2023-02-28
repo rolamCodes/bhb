@@ -159,9 +159,9 @@ button {
   object-fit: contain;
 }
 
-/* Menu */
+/* List */
 
-.menu {
+.list {
   display: flex;
   flex-direction: column;
   padding: 16px;

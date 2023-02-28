@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Nav from './components/Nav';
 import Counter from './components/Counter';
-import Menu from "./components/Menu";
+import List from "./components/List";
 
 function App() {
   const [wPoints, setWPoints] = useState();
   const [lPoints, setLPoints] = useState();
   const [habitName, setHabitName] = useState('');
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [isHabitOpen, setIsHabitOpen] = useState(false);
 
   const habits = [
     {
@@ -60,19 +60,23 @@ function App() {
         setHabitName(habitObject.name);
         setWPoints(habitObject.wPoints);
         setLPoints(habitObject.lPoints);
-        setIsMenuOpen(!isMenuOpen);
+        setIsHabitOpen(!isHabitOpen);
       }
     });
+  }
+
+  const handleAddNewHabit = () => {
+    console.log('Add new habit');
   }
 
   return (
     <div className='app'>
       <Nav
-        isMenuOpen={isMenuOpen}
-        onMenuButtonClick={() => setIsMenuOpen(!isMenuOpen)}
+        isHabitOpen={isHabitOpen}
+        onClose={() => setIsHabitOpen(!isHabitOpen)}
+        onAdd={handleAddNewHabit}
       />
-      {isMenuOpen ? <Menu habits={habits} onCardClick={handleCardClick} />
-        :
+      {isHabitOpen ?
         <div className='main-container'>
           <div>
             <p className='text-highlight'>Habit</p>
@@ -92,6 +96,8 @@ function App() {
             />
           </div>
         </div>
+        :
+        <List habits={habits} onCardClick={handleCardClick} />
       }
     </div>
   );

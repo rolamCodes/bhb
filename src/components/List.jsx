@@ -1,9 +1,9 @@
 import React from 'react';
 import HabitCard from './HabitCard';
 
-function Menu({ habits, onCardClick }) {
+function List({ habits, onCardClick }) {
     return (
-        <div className='menu'>
+        <div className='list'>
             {habits.map((habit) => {
                 return (
                     <HabitCard
@@ -20,4 +20,4 @@ function Menu({ habits, onCardClick }) {
     );
 }
 
-export default Menu;
+export default List;
