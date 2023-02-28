@@ -218,8 +218,10 @@ button {
 
 .points-container-inner {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 9px;
+  rotate: 180deg;
 }
 
 .point {
