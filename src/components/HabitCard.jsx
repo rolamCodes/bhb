@@ -3,16 +3,19 @@ import win from '../assets/win.png';
 import lose from '../assets/lose.png';
 import inProgress from '../assets/in_progress.png';
 
-function HabitCard({ habitName, wPoints, lPoints, status }) {
+function HabitCard({ name, wPoints, lPoints, status }) {
+    console.log(status);
     return (
         <div className='habit-card-container'>
-            <div className='status'>
-                {/* change icon bases on status */}
-                <img className='habit-card-icon' src={win} alt='habit card icon' />
+            <div className={`status ${status}`}>
+                {status === 'Won' ? <img className='habit-card-icon' src={win} alt='habit card icon' />
+                    : status === 'Lost' ? <img className='habit-card-icon' src={lose} alt='habit card icon' />
+                        : <img className='habit-card-icon' src={inProgress} alt='habit card icon' />
+                }
             </div>
             <div habit-card-text-container>
                 <p className='text-highlight'>{wPoints} W / {lPoints} L</p>
-                <p className='text-habit'>{habitName}</p>
+                <p className='text-habit'>{name}</p>
             </div>
         </div>
     );

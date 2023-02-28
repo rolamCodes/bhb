@@ -14,31 +14,31 @@ function App() {
       name: 'Leaving the fridge open',
       wPoints: 34,
       lPoints: 5,
-      status: '',
+      status: 'Won',
     },
     {
       name: 'Gambling',
       wPoints: 34,
       lPoints: 5,
-      status: '',
+      status: 'Lost',
     },
     {
       name: 'Spending too much money on food',
       wPoints: 80,
       lPoints: 5,
-      status: '',
+      status: 'InProgress',
     },
     {
       name: 'Killing cats',
       wPoints: 34,
       lPoints: 5,
-      status: '',
+      status: 'Won',
     },
     {
       name: 'Driving fast',
       wPoints: 1,
       lPoints: 5,
-      status: '',
+      status: 'Won',
     }
   ];
 

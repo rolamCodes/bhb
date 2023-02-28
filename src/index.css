@@ -238,6 +238,13 @@ button {
   background-color: var(--green);
 }
 
+.divider {
+  width: 1px;
+  background-color: var(--gray-light);
+}
+
+/* Class names I regret using... these are for styling buttons and status icons */
+
 .Won {
   background-color: var(--green);
 }
@@ -246,7 +253,6 @@ button {
   background-color: var(--red);
 }
 
-.divider {
-  width: 1px;
+.InProgress {
   background-color: var(--gray-light);
 }

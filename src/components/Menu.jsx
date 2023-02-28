@@ -7,10 +7,10 @@ function Menu({ habits }) {
             {habits.map((habit) => {
                 return (
                     <HabitCard
-                        habitName={habit.name}
+                        name={habit.name}
                         wPoints={habit.wPoints}
                         lPoints={habit.lPoints}
-                        stauts={habit.status}
+                        status={habit.status}
                     />
                 );
             })}
