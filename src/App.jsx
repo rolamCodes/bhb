@@ -13,6 +13,7 @@ function App() {
   const [wPoints, setWPoints] = useState();
   const [lPoints, setLPoints] = useState();
   const [habitName, setHabitName] = useState('');
+  const [status, setStatus] = useState('open');
   const [isHabitOpen, setIsHabitOpen] = useState(false);
   const [isInputVisible, setIsInputVisible] = useState(false);
   const [habits, setHabits] = useState([]);
@@ -66,6 +67,7 @@ function App() {
         setHabitName(habitObject.name);
         setWPoints(habitObject.wPoints);
         setLPoints(habitObject.lPoints);
+        setStatus(habitObject.status);
         setIsHabitOpen(!isHabitOpen);
       }
     });
@@ -162,12 +164,14 @@ function App() {
             </div>
             <div className='counters-container'>
               <Counter
+                status={status}
                 type='won'
                 points={wPoints}
                 onNewPoint={handleNewPoint}
               />
               <div className='divider'></div>
               <Counter
+                status={status}
                 type='lost'
                 points={lPoints}
                 onNewPoint={handleNewPoint}

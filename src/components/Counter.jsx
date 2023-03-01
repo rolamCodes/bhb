@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Point from './Point';
 
-function Counter({ type, points, onNewPoint }) {
+function Counter({ status, type, points, onNewPoint }) {
     const [counterPoints, setCounterPoints] = useState([]);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ function Counter({ type, points, onNewPoint }) {
                     {counterPoints.map(point => <Point type={type} />)}
                 </div>
             </div>
-            <button className='button' onClick={() => onNewPoint(type)}>{type}</button>
+            <button className='button' onClick={status === 'open' ? () => onNewPoint(type) : () => alert(`You have already ${status}`)}>{type}</button>
         </div>
     );
 }
