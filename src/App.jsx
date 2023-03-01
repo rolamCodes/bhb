@@ -19,19 +19,23 @@ function App() {
   const [signedInUser, setSignedInUser] = useState(undefined);
 
   const handleNewPoint = (pointType) => {
-    if (pointType === 'Won') {
+    if (pointType === 'won') {
       for (let i = 0; i < habits.length; i++) {
         if (habits[i].name === habitName) {
-          habits[i].wPoints = wPoints + 1;
+          const newHabits = [...habits];
+          newHabits[i].wPoints = wPoints + 1;
+          setHabits(newHabits)
           setWPoints(habits[i].wPoints);
           const docRef = doc(db, 'users', signedInUser.uid);
           updateDoc(docRef, { habits: habits });
         }
       }
-    } else if (pointType === 'Lost') {
+    } else if (pointType === 'lost') {
       for (let i = 0; i < habits.length; i++) {
         if (habits[i].name === habitName) {
+          const newHabits = [...habits];
           habits[i].lPoints = lPoints + 1;
+          setHabits(newHabits)
           setLPoints(habits[i].lPoints);
           const docRef = doc(db, 'users', signedInUser.uid);
           updateDoc(docRef, { habits: habits });
@@ -142,13 +146,13 @@ function App() {
             </div>
             <div className='counters-container'>
               <Counter
-                type='Won'
+                type='won'
                 points={wPoints}
                 onNewPoint={handleNewPoint}
               />
               <div className='divider'></div>
               <Counter
-                type='Lost'
+                type='lost'
                 points={lPoints}
                 onNewPoint={handleNewPoint}
               />
