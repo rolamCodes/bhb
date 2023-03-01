@@ -21,7 +21,6 @@ html,
 body {
   height: 100%;
   max-width: 540px;
-  border: 1pt solid var(--gray-dark);
 }
 
 /*

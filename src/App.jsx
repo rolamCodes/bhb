@@ -80,7 +80,7 @@ function App() {
   const handleSignout = () => {
     signOut(auth)
       .then(() => {
-        //signed out
+        setSignedInUser(null);
       })
       .catch(err => console.log(err));
   }
