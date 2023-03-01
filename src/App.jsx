@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Nav from './components/Nav';
+import HabitInput from "./components/HabitInput";
 import Counter from './components/Counter';
 import List from './components/List';
 import { db } from './firebase';
@@ -13,6 +14,7 @@ function App() {
   const [lPoints, setLPoints] = useState();
   const [habitName, setHabitName] = useState('');
   const [isHabitOpen, setIsHabitOpen] = useState(false);
+  const [isInputVisible, setIsInputVisible] = useState(false);
   const [habits, setHabits] = useState([]);
   const [signedInUser, setSignedInUser] = useState(undefined);
 
@@ -45,10 +47,12 @@ function App() {
     });
   }
 
-  const handleAddNewHabit = () => {
+  const handleAddNewHabit = (event) => {
+    event.preventDefault();
+    const newHabitName = event.target[0].value;
     const newHabits = [...habits];
     newHabits.push({
-      name: 'Gambling',
+      name: newHabitName,
       wPoints: 0,
       lPoints: 0,
       status: 'open'
@@ -81,6 +85,7 @@ function App() {
     signOut(auth)
       .then(() => {
         setSignedInUser(null);
+        setHabits([]);
       })
       .catch(err => console.log(err));
   }
@@ -117,8 +122,12 @@ function App() {
         <Nav
           isHabitOpen={isHabitOpen}
           onClose={() => setIsHabitOpen(!isHabitOpen)}
-          onAdd={handleAddNewHabit}
+          onGetInput={() => setIsInputVisible(!isInputVisible)}
           onSignout={handleSignout}
+        />
+        <HabitInput
+          isInputVisible={isInputVisible}
+          onAddNewHabit={handleAddNewHabit}
         />
         {isHabitOpen ?
           <div className='main-container'>

@@ -141,6 +141,12 @@ button {
   text-align: center;
 }
 
+.button-small {
+  padding-block: 10px;
+  padding-inline: 16px;
+  font-size: 12px;
+}
+
 /* Nav */
 
 .nav-container {
@@ -256,4 +262,33 @@ button {
 
 .open {
   background-color: var(--gray-light);
+}
+
+/* Habit Input */
+
+.habit-input-container {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  background-color: var(--gray-dark);
+  border-top: 1px solid var(--gray-light);
+}
+
+.input {
+  flex-grow: 1;
+  padding-block: 10px;
+  padding-inline: 16px;
+  border-radius: 1000px;
+  background-color: transparent;
+  border: 1px solid white;
+  font-size: 12px;
+  color: white;
+}
+
+.input::placeholder {
+  color: var(--gray-light);
+}
+
+.input:focus {
+  outline: none;
 }

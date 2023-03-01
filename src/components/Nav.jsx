@@ -4,12 +4,12 @@ import logo from '../assets/logo.png';
 import close from '../assets/close.png';
 import add from '../assets/add.png';
 
-function Nav({ onAdd, onClose, isHabitOpen, onSignout }) {
+function Nav({ onGetInput, onClose, isHabitOpen, onSignout }) {
     return (
         <div className='nav-container'>
             <button onClick={onSignout}><img className='nav-icon' src={signout} alt='sign out icon' /></button>
             <img className='logo' src={logo} alt='bad habit breaker logo' />
-            <button onClick={isHabitOpen ? onClose : onAdd}>
+            <button onClick={isHabitOpen ? onClose : onGetInput}>
                 {isHabitOpen ?
                     <img className='nav-icon' src={close} alt='close icon' />
                     :
