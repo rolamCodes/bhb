@@ -46,13 +46,15 @@ function App() {
   }
 
   const handleAddNewHabit = () => {
-    const docRef = doc(db, 'habits', '1');
-    setDoc(docRef, {
+    const newHabits = [...habits];
+    newHabits.push({
       name: 'Gambling',
       wPoints: 0,
       lPoints: 0,
       status: 'open'
-    });
+    })
+    const docRef = doc(db, 'users', signedInUser.uid);
+    updateDoc(docRef, { habits: newHabits });
   }
 
   const handleSignIn = () => {
@@ -64,8 +66,8 @@ function App() {
         const docRef = doc(db, 'users', uid);
         getDoc(docRef)
           .then((docSnap) => {
-            if (docSnap) {
-              console.log(docSnap);
+            if (docSnap.exists()) {
+              //do nothing
             } else {
               setDoc(docRef, { userName: user.displayName, habits: [] });
             }
@@ -87,11 +89,17 @@ function App() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setSignedInUser(user);
+        const docRef = doc(db, 'users', user.uid);
+        getDoc(docRef)
+          .then((docSnap) => {
+            const data = docSnap.data();
+            setHabits(data.habits);
+          })
       } else {
         setSignedInUser(null);
       }
     })
-  }, []);
+  }, [habits]);
 
   if (signedInUser === undefined) {
     return (
