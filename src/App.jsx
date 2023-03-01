@@ -24,6 +24,8 @@ function App() {
         if (habits[i].name === habitName) {
           habits[i].wPoints = wPoints + 1;
           setWPoints(habits[i].wPoints);
+          const docRef = doc(db, 'users', signedInUser.uid);
+          updateDoc(docRef, { habits: habits });
         }
       }
     } else if (pointType === 'Lost') {
@@ -31,6 +33,8 @@ function App() {
         if (habits[i].name === habitName) {
           habits[i].lPoints = lPoints + 1;
           setLPoints(habits[i].lPoints);
+          const docRef = doc(db, 'users', signedInUser.uid);
+          updateDoc(docRef, { habits: habits });
         }
       }
     }
@@ -59,6 +63,7 @@ function App() {
     })
     const docRef = doc(db, 'users', signedInUser.uid);
     updateDoc(docRef, { habits: newHabits });
+    setIsInputVisible(!isInputVisible);
   }
 
   const handleSignIn = () => {
