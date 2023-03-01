@@ -7,8 +7,8 @@ function HabitCard({ habitObject, name, wPoints, lPoints, status, onCardClick })
     return (
         <div className='habit-card-container' onClick={() => onCardClick(habitObject)}>
             <div className={`status ${status}`}>
-                {status === 'Won' ? <img className='habit-card-icon' src={win} alt='habit card icon' />
-                    : status === 'Lost' ? <img className='habit-card-icon' src={lose} alt='habit card icon' />
+                {status === 'won' ? <img className='habit-card-icon' src={win} alt='habit card icon' />
+                    : status === 'lost' ? <img className='habit-card-icon' src={lose} alt='habit card icon' />
                         : <img className='habit-card-icon' src={open} alt='habit card icon' />
                 }
             </div>

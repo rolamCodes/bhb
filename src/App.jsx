@@ -22,23 +22,39 @@ function App() {
     if (pointType === 'won') {
       for (let i = 0; i < habits.length; i++) {
         if (habits[i].name === habitName) {
-          const newHabits = [...habits];
-          newHabits[i].wPoints = wPoints + 1;
-          setHabits(newHabits)
-          setWPoints(habits[i].wPoints);
-          const docRef = doc(db, 'users', signedInUser.uid);
-          updateDoc(docRef, { habits: habits });
+          if (habits[i].wPoints < 100) {
+            const newHabits = [...habits];
+            newHabits[i].wPoints = wPoints + 1;
+            setHabits(newHabits)
+            setWPoints(habits[i].wPoints);
+            const docRef = doc(db, 'users', signedInUser.uid);
+            updateDoc(docRef, { habits: habits });
+          } else if (habits[i].wPoints === 100) {
+            const newHabits = [...habits];
+            newHabits[i].status = 'won';
+            setHabits(habits);
+            const docRef = doc(db, 'users', signedInUser.uid);
+            updateDoc(docRef, { habits: habits });
+          }
         }
       }
     } else if (pointType === 'lost') {
       for (let i = 0; i < habits.length; i++) {
         if (habits[i].name === habitName) {
-          const newHabits = [...habits];
-          habits[i].lPoints = lPoints + 1;
-          setHabits(newHabits)
-          setLPoints(habits[i].lPoints);
-          const docRef = doc(db, 'users', signedInUser.uid);
-          updateDoc(docRef, { habits: habits });
+          if (habits[i].lPoints < 30) {
+            const newHabits = [...habits];
+            newHabits[i].lPoints = lPoints + 1;
+            setHabits(newHabits)
+            setLPoints(habits[i].lPoints);
+            const docRef = doc(db, 'users', signedInUser.uid);
+            updateDoc(docRef, { habits: habits });
+          } else if (habits[i].lPoints === 30) {
+            const newHabits = [...habits];
+            newHabits[i].status = 'lost';
+            setHabits(habits);
+            const docRef = doc(db, 'users', signedInUser.uid);
+            updateDoc(docRef, { habits: habits });
+          }
         }
       }
     }
