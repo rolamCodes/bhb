@@ -4,7 +4,7 @@ import HabitInput from "./components/HabitInput";
 import Counter from './components/Counter';
 import List from './components/List';
 import { db } from './firebase';
-import { doc, getDoc, getDocs, setDoc, updateDoc, collection } from 'firebase/firestore';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { auth } from './firebase';
 import { signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
 import SignInScreen from "./components/SignInScreen";
