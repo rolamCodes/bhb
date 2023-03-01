@@ -292,3 +292,27 @@ button {
 .input:focus {
   outline: none;
 }
+
+/* Sign In Screen */
+
+h1 {
+  font-size: 24px;
+}
+
+p {
+  color: var(--gray-light);
+}
+
+.center-text {
+  text-align: center;
+}
+
+.sign-in-screen {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 40px;
+}

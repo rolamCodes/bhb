@@ -7,6 +7,7 @@ import { db } from './firebase';
 import { doc, getDoc, getDocs, setDoc, updateDoc, collection } from 'firebase/firestore';
 import { auth } from './firebase';
 import { signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
+import SignInScreen from "./components/SignInScreen";
 
 
 function App() {
@@ -139,9 +140,7 @@ function App() {
     );
   } else if (signedInUser === null) {
     return (
-      <div style={{ height: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <button onClick={handleSignIn}>Sign in with Google</button>
-      </div>
+      <SignInScreen onSignIn={handleSignIn} />
     );
   } else {
     return (
